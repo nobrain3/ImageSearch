@@ -142,11 +142,18 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
 
+
+    ImageViewModel imageViewModel;
     @Override
     public void setDataToRecyclerView(ArrayList<ImageSearchResponseData.Document> noticeArrayList) {
-        ImageViewModel imageViewModel = ViewModelProviders.of(this).get(ImageViewModel.class);
+        if (imageViewModel == null)
+            imageViewModel = ViewModelProviders.of(this).get(ImageViewModel.class);
+        else
+            imageViewModel.init();
+
         final ImageItemAdapter adapter = new ImageItemAdapter(this);
 
+        //isChangeString = true;
         imageViewModel.imagePagedList.observe(this, new Observer<PagedList<ImageSearchResponseData.Document>>() {
             @Override
             public void onChanged(PagedList<ImageSearchResponseData.Document> documents) {
