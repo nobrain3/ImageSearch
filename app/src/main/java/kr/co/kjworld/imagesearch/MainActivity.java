@@ -113,12 +113,24 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void showProgress() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mProgressBar.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
     @Override
     public void hideProgress() {
-        mProgressBar.setVisibility(View.INVISIBLE);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+
     }
 
     @Override

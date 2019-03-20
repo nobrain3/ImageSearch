@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 public class GetIntractorImpl implements GetImageDataInteractor {
     int mCurPage;
-
+    String KakaoAuth = "Please input key";
     public GetIntractorImpl() {
         mCurPage = 1;
     }
@@ -22,7 +22,7 @@ public class GetIntractorImpl implements GetImageDataInteractor {
     public void getImageSearchData(final OnFinishedListener onFinishedListener, String searchString) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
         //Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", "설현");
-        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", searchString, "accuracy",mCurPage, 30);
+        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(KakaoAuth, searchString, "accuracy",mCurPage, 30);
         /**Log the URL called*/
         Log.wtf("URL Called", call.request().url() + "");
 
