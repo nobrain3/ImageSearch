@@ -13,13 +13,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class GetIntractorImpl implements GetImageDataInteractor {
-    String KakaoAuth = "KakaoAK f3a3676ce605a55fa482f111aa67e2b4";
+    public static final int PAGE_SIZE = 30;
+    private static final int FIRST_PAGE = 1;
+    private static final String SORT = "accuracy";
+    private static final String AUTH = "KakaoAK f3a3676ce605a55fa482f111aa67e2b4";
 
     @Override
-    public void getImageSearchData(final OnFinishedListener onFinishedListener, String searchString, String sort, int page, int sizeInPage) {
+    public void getImageSearchData(final OnFinishedListener onFinishedListener) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
+        String searchString = RetrofitInstance.getSearchString();
         //Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", "설현");
-        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(KakaoAuth, searchString, sort , page, sizeInPage);
+        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(AUTH, searchString, SORT , FIRST_PAGE, PAGE_SIZE);
         /**Log the URL called*/
         Log.wtf("URL Called", call.request().url() + "");
 

@@ -18,16 +18,13 @@ public class ImageDataSource extends PageKeyedDataSource<Integer, ImageSearchRes
     private static final int FIRST_PAGE = 1;
     private static final String SORT = "accuracy";
     private static final String AUTH = "KakaoAK f3a3676ce605a55fa482f111aa67e2b4";
-    private String mSearchString;
 
-    public ImageDataSource (String searchString) {
-        mSearchString = searchString;
-    }
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull final LoadInitialCallback<Integer, ImageSearchResponseData.Document> callback) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
+        String searchString = RetrofitInstance.getSearchString();
         //Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", "설현");
-        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(AUTH, mSearchString, SORT , FIRST_PAGE, PAGE_SIZE);
+        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(AUTH, searchString, SORT , FIRST_PAGE, PAGE_SIZE);
         /**Log the URL called*/
         Log.wtf("URL Called", call.request().url() + "");
 
@@ -49,8 +46,9 @@ public class ImageDataSource extends PageKeyedDataSource<Integer, ImageSearchRes
     @Override
     public void loadBefore(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, ImageSearchResponseData.Document> callback) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
+        String searchString = RetrofitInstance.getSearchString();
         //Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", "설현");
-        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(AUTH, mSearchString, SORT , params.key, PAGE_SIZE);
+        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(AUTH, searchString, SORT , params.key, PAGE_SIZE);
         /**Log the URL called*/
         Log.wtf("URL Called", call.request().url() + "");
 
@@ -70,11 +68,13 @@ public class ImageDataSource extends PageKeyedDataSource<Integer, ImageSearchRes
         });
     }
 
+    String prevString;
     @Override
     public void loadAfter(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, ImageSearchResponseData.Document> callback) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
+        String searchString = RetrofitInstance.getSearchString();
         //Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", "설현");
-        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(AUTH, mSearchString, SORT , params.key, PAGE_SIZE);
+        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData(AUTH, searchString, SORT , params.key, PAGE_SIZE);
         /**Log the URL called*/
         Log.wtf("URL Called", call.request().url() + "");
 
@@ -82,6 +82,7 @@ public class ImageDataSource extends PageKeyedDataSource<Integer, ImageSearchRes
             @Override
             public void onResponse(Call<ImageSearchResponseData> call, Response<ImageSearchResponseData> response) {
                 if (response.body() != null && !response.body().getMeta().is_end()) {
+                    prevString = RetrofitInstance.getSearchString();
                     callback.onResult(response.body().getDocuments(), params.key + 1);
                 }
             }

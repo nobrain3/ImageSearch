@@ -38,9 +38,15 @@ public class ImageItemAdapter extends PagedListAdapter<ImageSearchResponseData.D
     @Override
     public void onBindViewHolder(@NonNull ImageDataViewHolder holder, int position) {
         ImageSearchResponseData.Document imageData = getItem(position);
-        Glide.with(mContext)
-                .load(imageData.getImage_url())
-                .into(holder.mImageView);
+        if (imageData != null)
+        {
+            Glide.with(mContext)
+                    .load(imageData.getImage_url())
+                    .into(holder.mImageView);
+        } else {
+
+        }
+
 
     }
 

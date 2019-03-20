@@ -18,6 +18,7 @@ import kr.co.kjworld.imagesearch.presenter.ImageItemClickListener;
 import kr.co.kjworld.imagesearch.presenter.MainPresenterImpl;
 import kr.co.kjworld.imagesearch.presenter.MainView;
 import kr.co.kjworld.imagesearch.presenter.Presenter;
+import retrofit2.Retrofit;
 
 
 import android.os.Bundle;
@@ -105,7 +106,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
                     @Override
                     public void run() {
                         if (!newText.isEmpty() && !newText.equals(prevString)) {
-                            mPresenter.requestDataFromServer(newText, "accuracy", 1, 30);
+                            RetrofitInstance.setSearchString(newText);
+                            mPresenter.requestDataFromServer();
                             prevString = newText;
                         }
                     }
@@ -139,10 +141,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     }
 
+
     @Override
     public void setDataToRecyclerView(ArrayList<ImageSearchResponseData.Document> noticeArrayList) {
         ImageViewModel imageViewModel = ViewModelProviders.of(this).get(ImageViewModel.class);
-
         final ImageItemAdapter adapter = new ImageItemAdapter(this);
 
         imageViewModel.imagePagedList.observe(this, new Observer<PagedList<ImageSearchResponseData.Document>>() {

@@ -40,8 +40,8 @@ public class MainPresenterImpl implements Presenter, GetImageDataInteractor.OnFi
 
 
     @Override
-    public void requestDataFromServer(String searchString, String sort, int page, int sizeInPage) {
-        mImageDataInteractor.getImageSearchData(this, searchString, sort, page, sizeInPage);
+    public void requestDataFromServer() {
+        mImageDataInteractor.getImageSearchData(this);
 
         if (mMainView != null)
             mMainView.showProgress();

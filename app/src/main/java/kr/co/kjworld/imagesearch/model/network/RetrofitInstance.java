@@ -6,6 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitInstance {
     private static Retrofit retrofit;
     private static final String BASE_URL = "https://dapi.kakao.com";
+    private static String searchString;
 
     /**
      * Create an instance of Retrofit object
@@ -18,5 +19,13 @@ public class RetrofitInstance {
                     .build();
         }
         return retrofit;
+    }
+
+    public static String getSearchString() {
+        return searchString;
+    }
+
+    public static void setSearchString(String aSearchString) {
+        searchString = aSearchString;
     }
 }
