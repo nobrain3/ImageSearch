@@ -10,5 +10,5 @@ public interface GetImageDataInteractor {
         void onFailure(Throwable t);
     }
 
-    void getImageSearchData(OnFinishedListener onFinishedListener, String searchString);
+    void getImageSearchData(OnFinishedListener onFinishedListener, String searchString, String sort, int page, int sizeInPage);
 }

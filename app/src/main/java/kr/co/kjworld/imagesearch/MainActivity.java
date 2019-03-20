@@ -2,10 +2,15 @@ package kr.co.kjworld.imagesearch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import kr.co.kjworld.imagesearch.adapter.ImageItemAdapter;
 import kr.co.kjworld.imagesearch.adapter.ImageSearchAdapter;
+import kr.co.kjworld.imagesearch.datasource.viewmodel.ImageViewModel;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
 import kr.co.kjworld.imagesearch.presenter.GetIntractorImpl;
 import kr.co.kjworld.imagesearch.presenter.ImageItemClickListener;
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
                     @Override
                     public void run() {
                         if (!newText.isEmpty() && !newText.equals(prevString)) {
-                            mPresenter.requestDataFromServer(newText);
+                            mPresenter.requestDataFromServer(newText, "accuracy", 1, 30);
                             prevString = newText;
                         }
                     }
@@ -135,7 +140,19 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void setDataToRecyclerView(ArrayList<ImageSearchResponseData.Document> noticeArrayList) {
-        ImageSearchAdapter adapter = new ImageSearchAdapter(this, noticeArrayList, imageItemClickListener);
+        ImageViewModel imageViewModel = ViewModelProviders.of(this).get(ImageViewModel.class);
+
+        final ImageItemAdapter adapter = new ImageItemAdapter(this);
+
+        imageViewModel.imagePagedList.observe(this, new Observer<PagedList<ImageSearchResponseData.Document>>() {
+            @Override
+            public void onChanged(PagedList<ImageSearchResponseData.Document> documents) {
+                adapter.submitList(documents);
+            }
+        });
+
+
+        //ImageSearchAdapter adapter = new ImageSearchAdapter(this, noticeArrayList, imageItemClickListener);
         mRecyclerView.setAdapter(adapter);
     }
 
