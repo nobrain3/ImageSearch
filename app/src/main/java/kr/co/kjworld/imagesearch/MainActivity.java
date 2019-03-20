@@ -26,6 +26,8 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity implements MainView {
     ProgressBar mProgressBar;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         initProgressBar();
 
         mPresenter = new MainPresenterImpl(this, new GetIntractorImpl());
-        mPresenter.requestDataFromServer();
+        //mPresenter.requestDataFromServer();
     }
 
     private void initializeRecyclerView() {
@@ -73,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         }
     };
 
+    private Timer timer = new Timer();
+    private String prevString;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -87,7 +92,19 @@ public class MainActivity extends AppCompatActivity implements MainView {
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(final String newText) {
+                timer.cancel();
+                timer = new Timer();
+                TimerTask timerTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (!newText.isEmpty() && !newText.equals(prevString)) {
+                            mPresenter.requestDataFromServer(newText);
+                            prevString = newText;
+                        }
+                    }
+                };
+                timer.schedule(timerTask, 1000);
                 return false;
             }
         });

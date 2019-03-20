@@ -45,7 +45,7 @@ public class MainPresenterImpl implements Presenter, GetImageDataInteractor.OnFi
     }
 
     @Override
-    public void requestDataFromServer() {
-        mImageDataInteractor.getImageSearchData(this);
+    public void requestDataFromServer(String searchString) {
+        mImageDataInteractor.getImageSearchData(this, searchString);
     }
 }

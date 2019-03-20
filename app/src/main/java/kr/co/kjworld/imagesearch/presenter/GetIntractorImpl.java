@@ -19,10 +19,10 @@ public class GetIntractorImpl implements GetImageDataInteractor {
         mCurPage = 1;
     }
     @Override
-    public void getImageSearchData(final OnFinishedListener onFinishedListener) {
+    public void getImageSearchData(final OnFinishedListener onFinishedListener, String searchString) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
         //Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", "설현");
-        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", "설현", "accuracy",mCurPage, 30);
+        Call<ImageSearchResponseData> call = kakaoImageSearchService.getImageData("KakaoAK f3a3676ce605a55fa482f111aa67e2b4", searchString, "accuracy",mCurPage, 30);
         /**Log the URL called*/
         Log.wtf("URL Called", call.request().url() + "");
 

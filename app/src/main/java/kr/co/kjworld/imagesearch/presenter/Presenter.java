@@ -5,5 +5,5 @@ public interface Presenter {
 
     void onRefreshButtonClick();
 
-    void requestDataFromServer();
+    void requestDataFromServer(String searchString);
 }
