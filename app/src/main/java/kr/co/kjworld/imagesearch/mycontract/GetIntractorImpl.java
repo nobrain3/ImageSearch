@@ -1,9 +1,6 @@
-package kr.co.kjworld.imagesearch.presenter;
+package kr.co.kjworld.imagesearch.mycontract;
 
 import android.util.Log;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import kr.co.kjworld.imagesearch.model.KakaoImageSearchService;
 import kr.co.kjworld.imagesearch.model.network.RetrofitInstance;

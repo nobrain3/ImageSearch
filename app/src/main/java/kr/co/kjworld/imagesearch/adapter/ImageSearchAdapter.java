@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 import kr.co.kjworld.imagesearch.R;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
-import kr.co.kjworld.imagesearch.presenter.ImageItemClickListener;
+import kr.co.kjworld.imagesearch.mycontract.ImageItemClickListener;
 
 public class ImageSearchAdapter extends RecyclerView.Adapter<ImageSearchAdapter.ImageDataViewHolder> {
     Context mContext;

@@ -1,4 +1,4 @@
-package kr.co.kjworld.imagesearch.presenter;
+package kr.co.kjworld.imagesearch.mycontract;
 
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
 

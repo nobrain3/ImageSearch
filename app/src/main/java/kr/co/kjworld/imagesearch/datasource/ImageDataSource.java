@@ -7,8 +7,6 @@ import androidx.paging.PageKeyedDataSource;
 import kr.co.kjworld.imagesearch.model.KakaoImageSearchService;
 import kr.co.kjworld.imagesearch.model.network.RetrofitInstance;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
-import kr.co.kjworld.imagesearch.presenter.GetImageDataInteractor;
-import kr.co.kjworld.imagesearch.presenter.GetIntractorImpl;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

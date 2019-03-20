@@ -9,16 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import kr.co.kjworld.imagesearch.adapter.ImageItemAdapter;
-import kr.co.kjworld.imagesearch.adapter.ImageSearchAdapter;
 import kr.co.kjworld.imagesearch.datasource.viewmodel.ImageViewModel;
 import kr.co.kjworld.imagesearch.model.network.RetrofitInstance;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
-import kr.co.kjworld.imagesearch.presenter.GetIntractorImpl;
-import kr.co.kjworld.imagesearch.presenter.ImageItemClickListener;
-import kr.co.kjworld.imagesearch.presenter.MainPresenterImpl;
-import kr.co.kjworld.imagesearch.presenter.MainView;
-import kr.co.kjworld.imagesearch.presenter.Presenter;
-import retrofit2.Retrofit;
+import kr.co.kjworld.imagesearch.mycontract.GetIntractorImpl;
+import kr.co.kjworld.imagesearch.mycontract.ImageItemClickListener;
+import kr.co.kjworld.imagesearch.mycontract.MainPresenterImpl;
+import kr.co.kjworld.imagesearch.mycontract.MainView;
+import kr.co.kjworld.imagesearch.mycontract.Presenter;
 
 
 import android.os.Bundle;
