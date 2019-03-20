@@ -38,11 +38,6 @@ public class MainPresenterImpl implements Presenter, GetImageDataInteractor.OnFi
         mMainView = null;
     }
 
-    @Override
-    public void onRefreshButtonClick() {
-
-
-    }
 
     @Override
     public void requestDataFromServer(String searchString, String sort, int page, int sizeInPage) {

@@ -13,11 +13,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class GetIntractorImpl implements GetImageDataInteractor {
-    int mCurPage;
     String KakaoAuth = "KakaoAK f3a3676ce605a55fa482f111aa67e2b4";
-    public GetIntractorImpl() {
-        mCurPage = 1;
-    }
+
     @Override
     public void getImageSearchData(final OnFinishedListener onFinishedListener, String searchString, String sort, int page, int sizeInPage) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
@@ -29,7 +26,6 @@ public class GetIntractorImpl implements GetImageDataInteractor {
         call.enqueue(new Callback<ImageSearchResponseData>() {
             @Override
             public void onResponse(Call<ImageSearchResponseData> call, Response<ImageSearchResponseData> response) {
-                mCurPage++;
                 onFinishedListener.onFinished(response.body().getMeta(), response.body().getDocuments());
             }
 

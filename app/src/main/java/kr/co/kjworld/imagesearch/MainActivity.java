@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import kr.co.kjworld.imagesearch.adapter.ImageItemAdapter;
 import kr.co.kjworld.imagesearch.adapter.ImageSearchAdapter;
 import kr.co.kjworld.imagesearch.datasource.viewmodel.ImageViewModel;
+import kr.co.kjworld.imagesearch.model.network.RetrofitInstance;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
 import kr.co.kjworld.imagesearch.presenter.GetIntractorImpl;
 import kr.co.kjworld.imagesearch.presenter.ImageItemClickListener;
