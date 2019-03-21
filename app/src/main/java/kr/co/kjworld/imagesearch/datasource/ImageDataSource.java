@@ -11,12 +11,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * [nobrain3]
+ * 페이징 할때 데이터를 얻어오는 작업.
+ * PageKeyedDataSource를 상속받아서 페이지 단위로 요청한다.
+ */
 public class ImageDataSource extends PageKeyedDataSource<Integer, ImageSearchResponseData.Document> {
     public static final int PAGE_SIZE = 30;
     private static final int FIRST_PAGE = 1;
     private static final String SORT = "accuracy";
     private static final String AUTH = "KakaoAK f3a3676ce605a55fa482f111aa67e2b4";
 
+    // 초기 데이터를 로드한다.
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull final LoadInitialCallback<Integer, ImageSearchResponseData.Document> callback) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
@@ -41,6 +47,7 @@ public class ImageDataSource extends PageKeyedDataSource<Integer, ImageSearchRes
         });
     }
 
+    // 이전 페이지 로드
     @Override
     public void loadBefore(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, ImageSearchResponseData.Document> callback) {
         KakaoImageSearchService kakaoImageSearchService = RetrofitInstance.getRetrofitInstance().create(KakaoImageSearchService.class);
@@ -66,6 +73,7 @@ public class ImageDataSource extends PageKeyedDataSource<Integer, ImageSearchRes
         });
     }
 
+    //다음 페이지 로드.
     String prevString;
     @Override
     public void loadAfter(@NonNull final LoadParams<Integer> params, @NonNull final LoadCallback<Integer, ImageSearchResponseData.Document> callback) {

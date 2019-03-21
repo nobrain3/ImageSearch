@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
 
+
 public class MainPresenterImpl implements Presenter, GetImageDataInteractor.OnFinishedListener {
     MainView mMainView;
     GetImageDataInteractor mImageDataInteractor;

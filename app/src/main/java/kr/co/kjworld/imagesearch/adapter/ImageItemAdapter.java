@@ -15,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import kr.co.kjworld.imagesearch.R;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
 
+/**
+ * [nobrain3]
+ * Recycler view에서 사용하는 adapter
+ */
 public class ImageItemAdapter extends PagedListAdapter<ImageSearchResponseData.Document, ImageItemAdapter.ImageDataViewHolder> {
 
     Context mContext;

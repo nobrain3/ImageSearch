@@ -8,6 +8,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
+/**
+ * [nobrain3]
+ * kakao 서버에 작업 요청 interface.
+ */
 public interface KakaoImageSearchService {
     @GET("/v2/search/image")
     Call<ImageSearchResponseData> getImageData(@Header("Authorization") String auth, @Query("query") String query);

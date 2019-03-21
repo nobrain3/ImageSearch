@@ -9,6 +9,11 @@ import kr.co.kjworld.imagesearch.datasource.ImageDataSource;
 import kr.co.kjworld.imagesearch.datasource.ImageDataSourceFactory;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
 
+/**
+ * [nobrain3]
+ * Factory에서 생성한 dataSource를 정의하고 빌드함.
+ * LiveData에서 page의 속성과 DataSource가 셋팅된 Pagedlist를 실시간 모니터링.
+ */
 public class ImageViewModel extends ViewModel {
     public LiveData<PagedList<ImageSearchResponseData.Document>> imagePagedList;
 

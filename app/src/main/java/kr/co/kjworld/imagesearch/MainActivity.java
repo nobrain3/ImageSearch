@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         }
     };
 
+    // 입력 완료 시간 체크.
     private Timer timer = new Timer();
     private String prevString;
 
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
             public boolean onQueryTextChange(final String newText) {
                 timer.cancel();
                 timer = new Timer();
+                // 입력 후 1초 후 string 변화가 있으면 presenter에 알림.
                 TimerTask timerTask = new TimerTask() {
                     @Override
                     public void run() {
@@ -140,7 +142,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
 
-
+    /**
+     * [nobrain3]
+     * RecyclerView에서 adapter를 셋팅함.
+     */
     ImageViewModel imageViewModel;
     @Override
     public void setDataToRecyclerView(ArrayList<ImageSearchResponseData.Document> noticeArrayList) {

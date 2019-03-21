@@ -6,6 +6,10 @@ import androidx.paging.DataSource;
 import androidx.paging.PageKeyedDataSource;
 import kr.co.kjworld.imagesearch.model.response.ImageSearchResponseData;
 
+/**
+ * [nobrain3]
+ * 생성한 DataSource를 생성하여 반환.
+ */
 public class ImageDataSourceFactory extends DataSource.Factory {
     private MutableLiveData<PageKeyedDataSource<Integer, ImageSearchResponseData.Document>> mImageLiveDataSource = new MutableLiveData<>();
 
