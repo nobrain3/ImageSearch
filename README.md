@@ -11,3 +11,7 @@
  - LiveData
  - Java
  - Kotlin
+ 
+ 
+ # 코드 구조
+<img src="https://github.com/nobrain3/ImageSearch/blob/master/Image/MVP_Pattern.png" width="100%">
